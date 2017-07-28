@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BindRadioButtonToEnumUWP
 {
@@ -19,7 +17,14 @@ namespace BindRadioButtonToEnumUWP
             return attribute != null ? attribute.Name : enumName;
         }
 
-        public static IEnumerable<T> GetValues<T>() => 
-            Enum.GetValues(typeof(T)).Cast<T>();
+        public static IEnumerable<TEnum> GetValues<TEnum>(this Type enumType) where TEnum : struct, IConvertible
+        {
+            if (!enumType.GetTypeInfo().IsEnum)
+            {
+                throw new ArgumentException("T must be an Enum!");
+            }
+
+            return Enum.GetValues(enumType).Cast<TEnum>();
+        }
     }
 }

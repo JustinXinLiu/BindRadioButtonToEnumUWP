@@ -25,8 +25,8 @@
         <TextBlock Text="ListBox Implementation" Margin="24,40,24,8" />
         <ListBox ItemsSource="{x:Bind Themes}" SelectedItem="{x:Bind SelectedTheme, Mode=TwoWay}" Margin="24,0" Width="200" HorizontalAlignment="Left">
             <ListBox.ItemTemplate>
-                <DataTemplate x:DataType="x:String">
-                    <TextBlock Text="{x:Bind}" />
+                <DataTemplate x:DataType="local:ThemeModel">
+                    <TextBlock Text="{x:Bind DisplayName}" />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
