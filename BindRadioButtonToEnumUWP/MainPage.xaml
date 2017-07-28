@@ -12,13 +12,23 @@
     </Page.Resources>
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="RadioButton Implementation" Margin="24,24,24,8" />
         <RadioButton IsChecked="{x:Bind ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=TwoWay}" 
-                     GroupName="Theme" Content="Default" Margin="24" />
+                     GroupName="Theme" Content="Default" Margin="24,0" />
        
         <RadioButton IsChecked="{x:Bind ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}" 
-                     GroupName="Theme" Content="Light" Margin="24" />
+                     GroupName="Theme" Content="Light" Margin="24,0" />
         
         <RadioButton IsChecked="{x:Bind ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}"
-                     GroupName="Theme" Content="Dark" Margin="24" />
+                     GroupName="Theme" Content="Dark" Margin="24,0" />
+
+        <TextBlock Text="ListBox Implementation" Margin="24,40,24,8" />
+        <ListBox ItemsSource="{x:Bind Themes}" SelectedItem="{x:Bind SelectedTheme, Mode=TwoWay}" Margin="24,0" Width="200" HorizontalAlignment="Left">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="x:String">
+                    <TextBlock Text="{x:Bind}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </StackPanel>
 </Page>
