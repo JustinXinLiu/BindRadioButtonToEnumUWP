@@ -36,7 +36,6 @@ namespace BindRadioButtonToEnumUWP
             InitializeComponent();
 
             SelectedCustomTheme = CustomThemes[1];
-            SelectedTheme = Themes[1];
         }
 
         public List<ThemeModel> CustomThemes { get; } =
@@ -59,7 +58,7 @@ namespace BindRadioButtonToEnumUWP
             }
         }
 
-        private ElementTheme _selectedTheme;
+        private ElementTheme _selectedTheme = ElementTheme.Light;
         public ElementTheme SelectedTheme
         {
             get => _selectedTheme;
