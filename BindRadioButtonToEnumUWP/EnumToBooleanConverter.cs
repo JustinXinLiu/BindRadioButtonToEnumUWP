@@ -12,12 +12,12 @@ namespace BindRadioButtonToEnumUWP
         {
             if (parameter is string enumString)
             {
-                if (!Enum.IsDefined(value.GetType(), value))
+                if (!Enum.IsDefined(EnumType, value))
                 {
                     return DependencyProperty.UnsetValue;
                 }
 
-                var enumValue = Enum.Parse(value.GetType(), enumString);
+                var enumValue = Enum.Parse(EnumType, enumString);
                 return enumValue.Equals(value);
             }
 
