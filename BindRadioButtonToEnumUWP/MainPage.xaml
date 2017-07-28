@@ -18,12 +18,21 @@
        
         <RadioButton IsChecked="{x:Bind ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=TwoWay}" 
                      GroupName="Theme" Content="Light" Margin="24,0" />
-        
+
         <RadioButton IsChecked="{x:Bind ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=TwoWay}"
                      GroupName="Theme" Content="Dark" Margin="24,0" />
 
-        <TextBlock Text="ListBox Implementation" Margin="24,40,24,8" />
+        <TextBlock Text="ListBox Implementation (Simple)" Margin="24,40,24,8" />
         <ListBox ItemsSource="{x:Bind Themes}" SelectedItem="{x:Bind SelectedTheme, Mode=TwoWay}" Margin="24,0" Width="200" HorizontalAlignment="Left">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="ElementTheme">
+                    <TextBlock Text="{x:Bind}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <TextBlock Text="ListBox Implementation" Margin="24,40,24,8" />
+        <ListBox ItemsSource="{x:Bind CustomThemes}" SelectedItem="{x:Bind SelectedCustomTheme, Mode=TwoWay}" Margin="24,0" Width="200" HorizontalAlignment="Left">
             <ListBox.ItemTemplate>
                 <DataTemplate x:DataType="local:ThemeModel">
                     <TextBlock Text="{x:Bind DisplayName}" />

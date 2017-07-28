@@ -35,14 +35,32 @@ namespace BindRadioButtonToEnumUWP
         {
             InitializeComponent();
 
+            SelectedCustomTheme = CustomThemes[1];
             SelectedTheme = Themes[1];
         }
 
-        public List<ThemeModel> Themes { get; } = 
-            typeof(AppTheme).GetValues<AppTheme>().Select(t => new ThemeModel(t)).ToList();
+        public List<ThemeModel> CustomThemes { get; } =
+            typeof(CustomTheme).GetValues<CustomTheme>().Select(t => new ThemeModel(t)).ToList();
 
-        private ThemeModel _selectedTheme;
-        public ThemeModel SelectedTheme
+        public List<ElementTheme> Themes { get; } =
+            typeof(ElementTheme).GetValues<ElementTheme>().ToList();
+
+        private ThemeModel _selectedCustomTheme;
+        public ThemeModel SelectedCustomTheme
+        {
+            get => _selectedCustomTheme;
+            set
+            {
+                if (_selectedCustomTheme != value)
+                {
+                    _selectedCustomTheme = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private ElementTheme _selectedTheme;
+        public ElementTheme SelectedTheme
         {
             get => _selectedTheme;
             set
@@ -70,7 +88,7 @@ namespace BindRadioButtonToEnumUWP
         #endregion
     }
 
-    public enum AppTheme
+    public enum CustomTheme
     {
         [Display(Name = "High Contrast")]
         HighContrast,
@@ -81,12 +99,12 @@ namespace BindRadioButtonToEnumUWP
 
     public class ThemeModel
     {
-        public ThemeModel(AppTheme appTheme)
+        public ThemeModel(CustomTheme appTheme)
         {
             AppTheme = appTheme;
         }
 
-        public AppTheme AppTheme { get; set; }
+        public CustomTheme AppTheme { get; set; }
         public string DisplayName => AppTheme.GetDisplayName();
     }
 }
